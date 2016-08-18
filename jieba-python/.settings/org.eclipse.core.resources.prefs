@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//example_/add_word_.py=utf-8
+encoding//example_/basic_\ .py=utf-8
+encoding//example_/enable_parallel_.py=utf-8
+encoding//example_/extract_tags_.py=utf-8
+encoding//example_/load_userdict_.py=utf-8
+encoding//example_/posseg_.py=utf-8
+encoding//example_/set_dictionary_.py=utf-8
+encoding//example_/set_idf_path_.py=utf-8
+encoding//example_/set_stop_words_.py=utf-8
+encoding//example_/suggest_freq_.py=utf-8
+encoding//example_/textrank_.py=utf-8
+encoding//example_/tokenize_.py=utf-8
