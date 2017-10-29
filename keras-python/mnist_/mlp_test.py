@@ -20,9 +20,9 @@ class mlp_test(unittest.TestCase):
         (train_images, train_labels), (test_images, test_labels) = mnist_utility.load_data()
         (normalized_train_images, one_hot_encoding_train_labels) = mlp_utility.preprocess(train_images, train_labels)
         input_layer_dimension = 28 * 28
-        hidden_layer_dimension = 256
+        hidden_layer_dimensions = [256, 256]
         output_layer_dimension = 10
-        (model, train_history) = mlp_utility.train(normalized_train_images, one_hot_encoding_train_labels, input_layer_dimension, hidden_layer_dimension, output_layer_dimension)
+        (model, train_history) = mlp_utility.train(normalized_train_images, one_hot_encoding_train_labels, input_layer_dimension, hidden_layer_dimensions, output_layer_dimension)
         plot_utility.plot_train_history(train_history)
         (normalized_test_images, one_hot_encoding_test_labels) = mlp_utility.preprocess(test_images, test_labels)
         scores = mlp_utility.evaluate(model, normalized_test_images, one_hot_encoding_test_labels)
