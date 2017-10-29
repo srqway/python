@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
-encoding//mnist_/mlp_test.py=utf-8
-encoding//mnist_/utility_/mlp_utility.py=utf-8
-encoding//mnist_/utility_/mnist_utility.py=utf-8
-encoding//mnist_/utility_/plot_utility.py=utf-8
-encoding//mnist_/utility_/print_utility.py=utf-8
+encoding//mlp_/mlp_test.py=utf-8
+encoding//mlp_/utility_/mlp_utility.py=utf-8
+encoding//mlp_/utility_/mnist_utility.py=utf-8
+encoding//mlp_/utility_/plot_utility.py=utf-8
+encoding//mlp_/utility_/print_utility.py=utf-8

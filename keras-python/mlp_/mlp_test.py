@@ -3,9 +3,7 @@
 
 import unittest
 
-from keras.utils import np_utils
-
-from mnist_.utility_ import print_utility, mlp_utility, mnist_utility, \
+from mlp_.utility_ import print_utility, mlp_utility, mnist_utility, \
     plot_utility
 import numpy as np
 
@@ -16,7 +14,7 @@ class mlp_test(unittest.TestCase):
     """
     Multilayer perceptron
     """
-    def test_run(self):
+    def test_mnist(self):
         (train_images, train_labels), (test_images, test_labels) = mnist_utility.load_data()
         (normalized_train_images, one_hot_encoding_train_labels) = mlp_utility.preprocess(train_images, train_labels)
         input_layer_dimension = 28 * 28
@@ -26,6 +24,7 @@ class mlp_test(unittest.TestCase):
         plot_utility.plot_train_history(train_history)
         (normalized_test_images, one_hot_encoding_test_labels) = mlp_utility.preprocess(test_images, test_labels)
         scores = mlp_utility.evaluate(model, normalized_test_images, one_hot_encoding_test_labels)
+        print_utility.print_score(model, scores)
         normalized_images = normalized_test_images
         prediction_labels = mlp_utility.prediction(model, normalized_images)
         labels = test_labels

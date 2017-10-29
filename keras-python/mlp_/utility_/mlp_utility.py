@@ -35,9 +35,6 @@ def train(normalized_train_images, one_hot_encoding_train_labels, input_layer_di
 
 def evaluate(model, normalized_test_images, one_hot_encoding_test_labels):
     scores = model.evaluate(normalized_test_images, one_hot_encoding_test_labels)
-    print()
-    for (name, score) in zip(model.metrics_names, scores):
-        print(name + " : " + str(score))
     return scores
 
 def prediction(model, normalized_images):
