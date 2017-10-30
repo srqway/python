@@ -3,8 +3,7 @@
 
 import unittest
 
-from mlp_.utility_ import print_utility, mlp_utility, mnist_utility, \
-    plot_utility
+from mlp_.utility_ import *
 import numpy as np
 
 
