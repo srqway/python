@@ -1,8 +1,10 @@
 eclipse.preferences.version=1
 encoding//linalg_/cross_product_.py=utf-8
 encoding//linalg_/dot_product_.py=utf-8
+encoding//linalg_/intersection_.py=utf-8
 encoding//linalg_/linear_equations_.py=utf-8
 encoding//linalg_/norm_.py=utf-8
 encoding//linalg_/normalize_.py=utf-8
 encoding//linalg_/projection_.py=utf-8
-encoding//linalg_/row_echelon_form_.py=utf-8
+encoding//linalg_/rank_.py=utf-8
+encoding//linalg_/reduced_row_echelon_form_.py=utf-8
