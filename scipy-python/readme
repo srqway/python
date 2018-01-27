@@ -1,0 +1,4 @@
+# start ipython
+cd /home/hsiehpinghan/anaconda3/bin
+source activate test
+ipython notebook
