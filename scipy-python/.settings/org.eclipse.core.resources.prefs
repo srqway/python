@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//linalg_/cross_product_.py=utf-8
 encoding//linalg_/determinent_.py=utf-8
 encoding//linalg_/dot_product_.py=utf-8
+encoding//linalg_/eigenvalues_and_eigenvectors_.py=utf-8
 encoding//linalg_/intersection_.py=utf-8
 encoding//linalg_/inverse_.py=utf-8
 encoding//linalg_/linear_equations_.py=utf-8
