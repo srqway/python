@@ -2,3 +2,6 @@
 cd /home/hsiehpinghan/anaconda3/bin
 source activate test
 ipython notebook
+
+# start freemind
+sh /home/hsiehpinghan/git/python/scipy-python/mind-map/freemind-bin-1.0.1/freemind.sh
