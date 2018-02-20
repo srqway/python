@@ -1,0 +1,12 @@
+# start anaconda
+cd /home/hsiehpinghan/anaconda3/bin
+source activate test
+pip install Django
+
+# generate app file
+cd /home/hsiehpinghan/Documents/workspace-sts-3.9.2.RELEASE/django_python/src
+python manage.py startapp my_app_0
+
+# test
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/my_app_0/
