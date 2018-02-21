@@ -1,5 +1,5 @@
 
-https://docs.djangoproject.com/en/2.0/ref/models/fields/#field-options
+https://docs.djangoproject.com/en/2.0/intro/tutorial04/
 
 
 # start anaconda
@@ -24,8 +24,9 @@ python manage.py migrate
 python manage.py createsuperuser
 
 # test
-http://127.0.0.1:8000/
 http://127.0.0.1:8000/admin/
 http://127.0.0.1:8000/my_app_0/
+http://127.0.0.1:8000/my_app_0/index_shortcut
 http://127.0.0.1:8000/my_app_0/0
-
+http://127.0.0.1:8000/my_app_0/test_404
+http://127.0.0.1:8000/my_app_0/test_404_shortcut
