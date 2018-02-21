@@ -25,6 +25,7 @@ python manage.py createsuperuser
 
 # test
 http://127.0.0.1:8000/
-http://127.0.0.1:8000/my_app_0/
 http://127.0.0.1:8000/admin/
+http://127.0.0.1:8000/my_app_0/
+http://127.0.0.1:8000/my_app_0/0
 
