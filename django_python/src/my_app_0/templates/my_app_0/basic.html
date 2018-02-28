@@ -1,7 +1,1 @@
-{% if my_list %}
-    {% for ele in my_list %}
-        <div><a href="{% url 'my_app_0:url parameter' ele.0 %}">{{ ele.1 }}</a></div>
-    {% endfor %}
-{% else %}
-    <div>empty !!!</div>
-{% endif %}
+date_time_field : {{ basic.date_time_field | date:"F j, Y" }}

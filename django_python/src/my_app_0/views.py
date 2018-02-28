@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.http.response import Http404
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
+from django.utils import timezone
 
 from my_app_0.models import Basic
 
@@ -18,10 +19,11 @@ def index_shortcut(request):
 
   
 def basic(request):
-    my_list = [(0, "a"), (1, "b"), (2, "c")]
+    basic = Basic()
+    basic.date_time_field = timezone.now()
     template = loader.get_template('my_app_0/basic.html')
     context = {
-        'my_list': my_list,
+        'basic': basic,
     }
     return HttpResponse(template.render(context, request))
 
@@ -49,3 +51,12 @@ def extends(request):
         "content" : "my_content"
     }
     return render(request, 'my_app_0/extends_1.html', context)
+
+
+def logical(request):
+    my_list = [(0, "a"), (1, "b"), (2, "c")]
+    template = loader.get_template('my_app_0/logical.html')
+    context = {
+        'my_list': my_list,
+    }
+    return HttpResponse(template.render(context, request))
