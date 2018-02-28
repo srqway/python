@@ -1,0 +1,25 @@
+# start anaconda
+cd /home/hsiehpinghan/anaconda3/bin
+source activate test
+pip install django
+pip install djangorestframework
+
+# generate app file
+cd /home/hsiehpinghan/git/python/django_rest_framework_python/src
+python manage.py startapp my_app_0
+
+# delete db
+rm /home/hsiehpinghan/git/python/django_rest_framework_python/src/db.sqlite3
+
+# create django table
+cd /home/hsiehpinghan/git/python/django_rest_framework_python/src
+python manage.py makemigrations
+python manage.py migrate
+
+# create an admin user
+python manage.py createsuperuser --email not_exist@gmail.com --username root
+
+# test
+http://127.0.0.1:8000/users/
+curl -H 'Accept: application/json; indent=4' -u root:<<password>> http://127.0.0.1:8000/users/
+

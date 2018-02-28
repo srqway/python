@@ -1,7 +1,7 @@
 # start anaconda
 cd /home/hsiehpinghan/anaconda3/bin
 source activate test
-pip install Django
+pip install django
 
 # generate app file
 cd /home/hsiehpinghan/git/python/django_python/src
@@ -16,7 +16,7 @@ python manage.py makemigrations
 python manage.py migrate
 
 # create an admin user
-python manage.py createsuperuser
+python manage.py createsuperuser --email not_exist@gmail.com --username root
 
 # test
 http://127.0.0.1:8000/admin/
