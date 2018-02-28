@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:parameter_0>/', views.url_parameter, name='url parameter'),
     path('test_404', views.test_404, name='test 404'),
     path('test_404_shortcut', views.test_404_shortcut, name='test 404 shortcut'),
+    path('extends', views.extends, name='extends'),
 ]

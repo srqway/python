@@ -21,7 +21,3 @@ python manage.py createsuperuser
 # test
 http://127.0.0.1:8000/admin/
 http://127.0.0.1:8000/my_app_0/
-http://127.0.0.1:8000/my_app_0/index_shortcut
-http://127.0.0.1:8000/my_app_0/0
-http://127.0.0.1:8000/my_app_0/test_404
-http://127.0.0.1:8000/my_app_0/test_404_shortcut

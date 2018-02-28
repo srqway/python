@@ -42,3 +42,10 @@ def test_404_shortcut(request):
     one_to_many_one = get_object_or_404(Basic, pk=999)
     return render(request, 'my_app_0/test_404.html', {'one_to_many_one': one_to_many_one})
 
+
+def extends(request):
+    context = {
+        "title" : "my_title",
+        "content" : "my_content"
+    }
+    return render(request, 'my_app_0/extends_1.html', context)
