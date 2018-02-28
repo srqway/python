@@ -7,20 +7,23 @@ from my_app_0.models import Basic
 
 
 def index(request):
-    my_list = [(0, "a"), (1, "b"), (2, "c")]
     template = loader.get_template('my_app_0/index.html')
-    context = {
-        'my_list': my_list,
-    }
+    context = {}
     return HttpResponse(template.render(context, request))
 
 
 def index_shortcut(request):
+    context = {}
+    return render(request, 'my_app_0/index.html', context)
+
+  
+def basic(request):
     my_list = [(0, "a"), (1, "b"), (2, "c")]
+    template = loader.get_template('my_app_0/basic.html')
     context = {
         'my_list': my_list,
     }
-    return render(request, 'my_app_0/index.html', context)
+    return HttpResponse(template.render(context, request))
 
 
 def url_parameter(request, parameter_0):
