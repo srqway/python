@@ -1,7 +1,3 @@
-
-https://docs.djangoproject.com/en/2.0/intro/tutorial04/
-
-
 # start anaconda
 cd /home/hsiehpinghan/anaconda3/bin
 source activate test
@@ -11,11 +7,10 @@ pip install Django
 cd /home/hsiehpinghan/git/python/django_python/src
 python manage.py startapp my_app_0
 
-# create django table
-cd /home/hsiehpinghan/git/python/django_python/src
-python manage.py migrate
+# delete db
+rm /home/hsiehpinghan/git/python/django_python/src/db.sqlite3
 
-# add table
+# create django table
 cd /home/hsiehpinghan/git/python/django_python/src
 python manage.py makemigrations
 python manage.py migrate
