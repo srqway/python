@@ -3,10 +3,6 @@ from django.db import models
 
 # Create your models here.
 class Basic(models.Model):
-
-    def __str__(self):
-        return models.Model.__str__(self)
-
     id = models.BigIntegerField(primary_key=True)
     big_integer_field = models.BigIntegerField(null=True)
     boolean_field = models.BooleanField(default=False)

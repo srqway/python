@@ -20,6 +20,6 @@ python manage.py migrate
 python manage.py createsuperuser --email not_exist@gmail.com --username root
 
 # test
-http://127.0.0.1:8000/users/
+http://127.0.0.1:8000/
 curl -H 'Accept: application/json; indent=4' -u root:<<password>> http://127.0.0.1:8000/users/
 
