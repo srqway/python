@@ -3,10 +3,16 @@ from django.db import models
 
 # Create your models here.
 class Basic(models.Model):
+    MY_CHOICE = (
+        ("A", "this is a."),
+        ("B", "this is b."),
+        ("C", "this is c.")
+    )
     id = models.BigIntegerField(primary_key=True)
     big_integer_field = models.BigIntegerField(null=True)
     boolean_field = models.BooleanField(default=False)
     char_field = models.CharField(null=True, max_length=100)
+    choice_field = models.CharField(max_length=1, choices=MY_CHOICE)
     date_field = models.DateField(null=True)
     date_time_field = models.DateTimeField(null=True)
     decimal_field = models.DecimalField(null=True, max_digits=5, decimal_places=2)
