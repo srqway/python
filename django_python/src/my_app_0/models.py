@@ -35,3 +35,24 @@ class Basic(models.Model):
     uuid_field = models.UUIDField(null=True)
 
 
+class ManyToOneOne(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    char_field = models.CharField(null=True, max_length=100)
+
+    
+class ManyToOneMany(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    char_field = models.CharField(null=True, max_length=100)
+    many_to_one_one = models.ForeignKey(ManyToOneOne, on_delete=models.CASCADE)
+
+
+class ManyToManyTo(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    char_field = models.CharField(null=True, max_length=100)
+
+    
+class ManyToOneFrom(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    char_field = models.CharField(null=True, max_length=100)
+    many_to_many_to = models.ManyToManyField(ManyToManyTo)
+
