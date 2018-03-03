@@ -51,8 +51,25 @@ class ManyToManyTo(models.Model):
     char_field = models.CharField(null=True, max_length=100)
 
     
-class ManyToOneFrom(models.Model):
+class ManyToManyFrom(models.Model):
     id = models.BigIntegerField(primary_key=True)
     char_field = models.CharField(null=True, max_length=100)
     many_to_many_to = models.ManyToManyField(ManyToManyTo)
 
+
+class ManyToManyWithExtraFieldsTo(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    char_field = models.CharField(null=True, max_length=100)
+
+    
+class ManyToManyWithExtraFieldsFrom(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    char_field = models.CharField(null=True, max_length=100)
+    many_to_many_to = models.ManyToManyField(ManyToManyWithExtraFieldsTo, through='ManyToManyWithExtraFields')
+
+    
+class ManyToManyWithExtraFields(models.Model):
+    manyToManyWithExtraFieldsTo = models.ForeignKey(ManyToManyWithExtraFieldsTo, on_delete=models.CASCADE)
+    manyToManyWithExtraFieldsFrom = models.ForeignKey(ManyToManyWithExtraFieldsFrom, on_delete=models.CASCADE)
+    char_field = models.CharField(null=True, max_length=100)
+    
