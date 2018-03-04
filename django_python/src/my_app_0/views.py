@@ -28,8 +28,8 @@ def basic(request):
     return HttpResponse(template.render(context, request))
 
 
-def url_parameter(request, parameter_0):
-    return HttpResponse("this is my_app_0 url_parameter parameter_0(%s)." % parameter_0)
+def url_parameter(request, parameter_0, parameter_1):
+    return HttpResponse("parameter_0(%s), parameter_1(%s)." % (parameter_0, parameter_1))
 
 
 def test_404(request):
