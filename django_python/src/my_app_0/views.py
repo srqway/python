@@ -60,3 +60,11 @@ def logical(request):
         'my_list': my_list,
     }
     return HttpResponse(template.render(context, request))
+
+
+def get(request):
+    a = request.GET.get("a", 0)
+    b = request.GET.get("b", 0)
+    result = int(a) + int(b)
+    return HttpResponse("%s + %s = %d" % (a, b, result))
+

@@ -16,13 +16,30 @@ CREATE SCHEMA django_python AUTHORIZATION thank;
 # delete db
 rm /home/hsiehpinghan/git/python/django_python/src/db.sqlite3
 
-# create django table
+# create table
 cd /home/hsiehpinghan/git/python/django_python/src
 python manage.py makemigrations
 python manage.py migrate
 
+# delete all data
+python manage.py flush
+
+# dump and load data
+python manage.py dumpdata my_app_0 > /tmp/my_app_0.json
+python manage.py loaddata /tmp/my_app_0.json
+
+# database shell
+python manage.py dbshell
+
 # create an admin user
 python manage.py createsuperuser --email not_exist@gmail.com --username root
+
+# unit test
+python manage.py test -v 2
+python manage.py test -v 2 my_app_0/
+
+# start server
+python manage.py runserver 0.0.0.0:8000
 
 # test
 http://127.0.0.1:8000/admin/

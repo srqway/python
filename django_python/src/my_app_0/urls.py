@@ -12,4 +12,5 @@ urlpatterns = [
     path('test_404_shortcut', views.test_404_shortcut, name='test 404 shortcut'),
     path('extends', views.extends, name='extends'),
     path('logical', views.logical, name='logical'),
+    path('get', views.get, name='get'),
 ]
