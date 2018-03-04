@@ -1,3 +1,4 @@
+from django.db.models.aggregates import Count
 from django.test import TestCase
 
 from my_app_0.models import Basic
@@ -63,4 +64,44 @@ class Test(TestCase):
         Basic.objects.create(id=1, char_field="123ABC456")
         Basic.objects.create(id=2, char_field="123aBc456")        
         basics = Basic.objects.exclude(char_field__regex=".*aBc.*")
-        self.assertEqual(basics.count(), 2)     
+        self.assertEqual(basics.count(), 2)    
+        
+    def test_basic_values_list(self):
+        Basic.objects.create(id=0, char_field="aaa")
+        Basic.objects.create(id=1, char_field="bbb")
+        Basic.objects.create(id=2, char_field="ccc")        
+        basics = Basic.objects.values_list("char_field", flat=True)
+        self.assertEqual(basics.query.__str__(), 'SELECT "my_app_0_basic"."char_field" FROM "my_app_0_basic"') 
+        
+    def test_basic_values_list_as_list(self):
+        Basic.objects.create(id=0, char_field="aaa")
+        Basic.objects.create(id=1, char_field="bbb")
+        Basic.objects.create(id=2, char_field="ccc")        
+        basics = Basic.objects.values_list("char_field", flat=True)
+        self.assertEqual(basics.query.__str__(), 'SELECT "my_app_0_basic"."char_field" FROM "my_app_0_basic"') 
+        
+    def test_basic_values(self):
+        Basic.objects.create(id=0, char_field="aaa")
+        Basic.objects.create(id=1, char_field="bbb")
+        Basic.objects.create(id=2, char_field="ccc")        
+        basics = list(Basic.objects.values("id", "char_field"))
+        self.assertEqual(basics.__str__(), "[{'id': 0, 'char_field': 'aaa'}, {'id': 1, 'char_field': 'bbb'}, {'id': 2, 'char_field': 'ccc'}]")  
+        
+    def test_basic_values_list_as_dict(self):
+        Basic.objects.create(id=0, char_field="aaa")
+        Basic.objects.create(id=1, char_field="bbbb")
+        Basic.objects.create(id=2, char_field="ccc")        
+        basics = list(Basic.objects.values_list("id", "char_field"))
+        self.assertEqual(basics.__str__(), "[(0, 'aaa'), (1, 'bbbb'), (2, 'ccc')]")  
+        
+    def test_basic_query_str(self):       
+        basics = Basic.objects.values_list("id", "char_field")
+        self.assertEqual(basics.query.__str__(), 'SELECT "my_app_0_basic"."id", "my_app_0_basic"."char_field" FROM "my_app_0_basic"')
+        
+    def test_basic_count(self):   
+        Basic.objects.create(id=0, char_field="aaa")
+        Basic.objects.create(id=1, char_field="aaa")
+        Basic.objects.create(id=2, char_field="ccc")  
+        basics = list(Basic.objects.all().values("char_field").annotate(count=Count('*')).values('char_field', 'count'))
+        self.assertEqual(basics.__str__(), "[{'char_field': 'aaa', 'count': 2}, {'char_field': 'ccc', 'count': 1}]")
+        
