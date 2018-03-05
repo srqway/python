@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from django.utils import timezone
 
+from my_app_0.forms import MyForm
 from my_app_0.models import Basic
 
 
@@ -68,3 +69,14 @@ def get(request):
     result = int(a) + int(b)
     return HttpResponse("%s + %s = %d" % (a, b, result))
 
+
+def form(request):
+    if request.method == 'POST':
+        my_form = MyForm(request.POST)
+        if my_form.is_valid():
+            a = my_form.cleaned_data['a']
+            b = my_form.cleaned_data['b']
+            return HttpResponse(str(int(a) + int(b)))
+    else:
+        my_form = MyForm()
+    return render(request, 'my_app_0/form.html', {'my_form': my_form})

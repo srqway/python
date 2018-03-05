@@ -13,4 +13,5 @@ urlpatterns = [
     path('extends', views.extends, name='extends'),
     path('logical', views.logical, name='logical'),
     path('get', views.get, name='get'),
+    path('form', views.form, name='form'),
 ]
