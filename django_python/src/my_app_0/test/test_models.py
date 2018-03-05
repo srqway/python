@@ -1,7 +1,8 @@
 from django.db.models.aggregates import Count
 from django.test import TestCase
 
-from my_app_0.models import Basic
+from my_app_0.models import Basic, ManyToOneOne, ManyToOneMany, ManyToManyTo, \
+    ManyToManyFrom
 
 
 class Test(TestCase):
@@ -104,4 +105,39 @@ class Test(TestCase):
         Basic.objects.create(id=2, char_field="ccc")  
         basics = list(Basic.objects.all().values("char_field").annotate(count=Count('*')).values('char_field', 'count'))
         self.assertEqual(basics.__str__(), "[{'char_field': 'aaa', 'count': 2}, {'char_field': 'ccc', 'count': 1}]")
+    
+    def test_basic_defer(self):   
+        Basic.objects.create(id=0, char_field="aaa")
+        basics = Basic.objects.all().defer("big_integer_field")
+        self.assertEqual(basics.query.__str__(), 'SELECT "my_app_0_basic"."id", "my_app_0_basic"."boolean_field", "my_app_0_basic"."char_field", "my_app_0_basic"."choice_field", "my_app_0_basic"."date_field", "my_app_0_basic"."date_time_field", "my_app_0_basic"."decimal_field", "my_app_0_basic"."duration_field", "my_app_0_basic"."email_field", "my_app_0_basic"."file_field", "my_app_0_basic"."file_path_field", "my_app_0_basic"."float_field", "my_app_0_basic"."image_field", "my_app_0_basic"."integer_field", "my_app_0_basic"."generic_ip_address_field", "my_app_0_basic"."null_boolean_field", "my_app_0_basic"."positive_integer_field", "my_app_0_basic"."positive_small_integer_field", "my_app_0_basic"."slug_field", "my_app_0_basic"."small_integer_field", "my_app_0_basic"."text_field", "my_app_0_basic"."time_field", "my_app_0_basic"."url_field", "my_app_0_basic"."uuid_field" FROM "my_app_0_basic"')
         
+    def test_basic_only(self):   
+        Basic.objects.create(id=0, char_field="aaa")
+        basics = Basic.objects.all().only("big_integer_field")
+        self.assertEqual(basics.query.__str__(), 'SELECT "my_app_0_basic"."id", "my_app_0_basic"."big_integer_field" FROM "my_app_0_basic"')
+        
+    def test_many_to_one_select_related(self):
+        one = ManyToOneOne.objects.create(id=0, char_field="one") 
+        ManyToOneMany.objects.create(id=0, char_field="many", many_to_one_one=one) 
+        ManyToOneMany.objects.create(id=1, char_field="many", many_to_one_one=one) 
+        manys = ManyToOneMany.objects.all().select_related('many_to_one_one')
+        self.assertEqual(manys.count(), 2)  
+        
+    def test_many_to_one_prefetch_related(self):
+        one = ManyToOneOne.objects.create(id=0, char_field="one") 
+        ManyToOneMany.objects.create(id=0, char_field="many", many_to_one_one=one) 
+        ManyToOneMany.objects.create(id=1, char_field="many", many_to_one_one=one) 
+        ones = ManyToOneOne.objects.all().prefetch_related('manytoonemany_set')
+        self.assertEqual(ones[0].manytoonemany_set.count(), 2)  
+        
+    def test_many_to_many_prefetch_related(self):
+        self.generate_many_to_many_data()
+        tos = ManyToManyTo.objects.all().prefetch_related('manytomanyfrom_set')
+        self.assertEqual(tos[0].manytomanyfrom_set.count(), 3) 
+        
+    def generate_many_to_many_data(self):
+        for to_id in range(3):
+            to = ManyToManyTo.objects.create(id=to_id, char_field="to") 
+            for from_id in range(3):
+                from_, created = ManyToManyFrom.objects.get_or_create(id=from_id, char_field="from") 
+                to.manytomanyfrom_set.add(from_)
