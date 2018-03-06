@@ -1,9 +1,12 @@
+from django.core.mail import send_mail, send_mass_mail
+from django.core.mail.message import EmailMultiAlternatives
 from django.http import HttpResponse
 from django.http.response import Http404
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from django.utils import timezone
 
+from django_python import settings
 from my_app_0.forms import MyForm
 from my_app_0.models import Basic
 
@@ -80,3 +83,22 @@ def form(request):
     else:
         my_form = MyForm()
     return render(request, 'my_app_0/form.html', {'my_form': my_form})
+
+
+def mail(request):
+    send_mail('subject of mail', 'message', settings.DEFAULT_FROM_EMAIL, ['thank.hsiehpinghan@gmail.com'])
+    return HttpResponse("send mail finished.")
+
+
+def mass_mail(request):
+    mail_0 = ('subject of mail_0', 'message', settings.DEFAULT_FROM_EMAIL, ['thank.hsiehpinghan@gmail.com'])
+    mail_1 = ('subject of mail_1', 'message', settings.DEFAULT_FROM_EMAIL, ['thank.hsiehpinghan@gmail.com'])
+    send_mass_mail((mail_0, mail_1))
+    return HttpResponse("send mass mail finished.")
+
+
+def email_multi_alternatives(request):
+    mail = EmailMultiAlternatives('subject of email_multi_alternatives', 'text message', settings.DEFAULT_FROM_EMAIL, ['thank.hsiehpinghan@gmail.com'])
+    mail.attach_alternative("<p><strong>html</strong> message</p>", "text/html")
+    mail.send()
+    return HttpResponse("send email multi alternatives finished.")

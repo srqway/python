@@ -31,6 +31,9 @@ python manage.py loaddata /tmp/my_app_0.json
 # database shell
 python manage.py dbshell
 
+# ipython shell
+python manage.py shell
+
 # create an admin user
 python manage.py createsuperuser --email not_exist@gmail.com --username root
 

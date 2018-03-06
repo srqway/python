@@ -14,4 +14,7 @@ urlpatterns = [
     path('logical', views.logical, name='logical'),
     path('get', views.get, name='get'),
     path('form', views.form, name='form'),
+    path('mail', views.mail, name='mail'),
+    path('mass_mail', views.mass_mail, name='mass mail'),
+    path('email_multi_alternatives', views.email_multi_alternatives, name='email multi alternatives'),
 ]
