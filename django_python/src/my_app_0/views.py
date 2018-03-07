@@ -1,10 +1,11 @@
 from django.core.mail import send_mail, send_mass_mail
 from django.core.mail.message import EmailMultiAlternatives
 from django.http import HttpResponse
-from django.http.response import Http404
+from django.http.response import Http404, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from django.utils import timezone
+from django.views.decorators.cache import cache_page
 
 from django_python import settings
 from my_app_0.forms import MyForm
@@ -102,3 +103,18 @@ def email_multi_alternatives(request):
     mail.attach_alternative("<p><strong>html</strong> message</p>", "text/html")
     mail.send()
     return HttpResponse("send email multi alternatives finished.")
+
+
+@cache_page(60)
+def cache(request):
+    return HttpResponse(timezone.now())
+
+
+def list_json(request):
+    list_ = [0, 1, 2]
+    return JsonResponse(list_, safe=False)
+
+ 
+def dict_json(request):
+    dict_ = {'key_0': 'value_0', 'key_1': 'value_1'}
+    return JsonResponse(dict_)

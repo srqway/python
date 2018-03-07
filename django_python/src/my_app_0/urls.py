@@ -17,4 +17,7 @@ urlpatterns = [
     path('mail', views.mail, name='mail'),
     path('mass_mail', views.mass_mail, name='mass mail'),
     path('email_multi_alternatives', views.email_multi_alternatives, name='email multi alternatives'),
+    path('cache', views.cache, name='cache'),
+    path('list_json', views.list_json, name='list json'),
+    path('dict_json', views.dict_json, name='dict json'),
 ]

@@ -32,3 +32,9 @@ class Test(TestCase):
         url = reverse('my_app_0:test 404')
         response = self.clinet.get(url)
         self.assertEqual(response.status_code, 404)   
+        
+    def test_cache(self):
+        url = reverse('my_app_0:cache')
+        response_0 = self.clinet.get(url)
+        response_1 = self.clinet.get(url)
+        self.assertEqual(response_0.content, response_1.content)   
