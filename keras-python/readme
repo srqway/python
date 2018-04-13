@@ -1,8 +1,16 @@
 # create anaconda virtual machine
 https://www.anaconda.com/download/
-sh /home/hsiehpinghan/Downloads/Anaconda3-5.0.1-Linux-x86_64.sh -b
-/home/hsiehpinghan/anaconda3/bin/conda create --name keras python=3.5 anaconda
+sh /home/hsiehpinghan/Downloads/Anaconda3-5.1.0-Linux-x86_64.sh -b
+/home/hsiehpinghan/anaconda3/bin/conda create --name keras python=3.6 anaconda
+/home/hsiehpinghan/anaconda3/bin/jupyter notebook --generate-config
+vi /home/hsiehpinghan/.jupyter/jupyter_notebook_config.py
+	c.NotebookApp.notebook_dir = '/home/hsiehpinghan/git/python/keras-python/'
 cd /home/hsiehpinghan/anaconda3/bin
 source activate keras
+pip install tensorflow
 pip install keras
 
+# start jupyter notebook
+cd /home/hsiehpinghan/anaconda3/bin
+source activate keras
+jupyter lab
