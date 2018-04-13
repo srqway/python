@@ -1,0 +1,30 @@
+# arelle source code
+https://github.com/Arelle/Arelle/tree/master/arelle
+
+
+# build arelle docker (http://arelle.org/documentation/running-from-source/)
+cd /home/hsiehpinghan/git/python/arelle-python
+docker build -t="hsiehpinghan/arelle:1.0.0" .
+docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro --privileged=true --net=host -it hsiehpinghan/arelle:1.0.0
+
+
+
+docker cp /home/hsiehpinghan/git/python/arelle-python/file/toolbarProperties.gif 03394da6ada6:/opt/arelle/images
+docker cp /home/hsiehpinghan/git/python/arelle-python/file/toolbarReopen.gif 03394da6ada6:/opt/arelle/images
+
+# anaconda
+/home/hsiehpinghan/anaconda3/bin/conda create --name arelle python=3.6 anaconda
+source activate arelle
+pip install -U rdflib
+
+
+from arelle import Cntlr
+import logging
+
+logger = logging.getLogger("arelle")
+xbrl = Cntlr.Cntlr(logFileName='log.txt').modelManager.load('/home/hsiehpinghan/Downloads/tifrs-20130331/XBRL_TW_Entry_Points/FH/tifrs-fr0-m1-fh-cr-2888-2013Q1.xml')
+for fact in xbrl.facts:
+   print(fact)
+
+
+
