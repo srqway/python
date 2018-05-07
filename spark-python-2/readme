@@ -1,0 +1,88 @@
+# create anaconda virtual machine
+https://www.anaconda.com/download/
+sh /home/hsiehpinghan/Downloads/Anaconda3-5.1.0-Linux-x86_64.sh -b
+/home/hsiehpinghan/anaconda3/bin/conda create --name spark-python-2 python=3.6 anaconda
+/home/hsiehpinghan/anaconda3/bin/jupyter notebook --generate-config
+vi /home/hsiehpinghan/.jupyter/jupyter_notebook_config.py
+	c.NotebookApp.notebook_dir = '/home/hsiehpinghan/git/python/spark-python-2/notebook/'
+cd /home/hsiehpinghan/anaconda3/bin
+source activate spark-python-2
+
+# start jupyter notebook
+cd /home/hsiehpinghan/anaconda3/bin
+source activate spark-python-2
+jupyter lab
+
+# set login without password
+https://github.com/hsiehpinghan/example/blob/master/bash-shell-example/example/ssh
+
+# download hadoop
+wget https://archive.apache.org/dist/hadoop/common/hadoop-2.6.4/hadoop-2.6.4.tar.gz -P /tmp/
+tar xvfz /tmp/hadoop-2.6.4.tar.gz -C /opt/
+vi /etc/profile
+	export HADOOP_HOME=/opt/hadoop-2.6.4
+	export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+	export HADOOP_MAPRED_HOME=$HADOOP_HOME
+	export HADOOP_COMMON_HOME=$HADOOP_HOME
+	export HADOOP_HDFS_HOME=$HADOOP_HOME
+	export YARN_HOME=$HADOOP_HOME
+	export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib"
+	export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+vi /opt/hadoop-2.6.4/etc/hadoop/hadoop-env.sh
+	export JAVA_HOME=/opt/jdk1.8.0_151
+vi /opt/hadoop-2.6.4/etc/hadoop/core-site.xml 
+	<configuration>
+	    <property>
+	        <name>fs.default.name</name>
+	        <value>hdfs://localhost:9000</value>
+	    </property>
+	</configuration>
+vi /opt/hadoop-2.6.4/etc/hadoop/yarn-site.xml
+	<configuration>
+	    <property>
+	        <name>yarn.nodemanager.aux-services</name>
+	        <value>mapreduce_shuffle</value>
+	    </property>
+	    <property>
+	       <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+	       <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+	    </property>
+	</configuration>
+cp /opt/hadoop-2.6.4/etc/hadoop/mapred-site.xml.template /opt/hadoop-2.6.4/etc/hadoop/mapred-site.xml
+vi /opt/hadoop-2.6.4/etc/hadoop/mapred-site.xml
+	<configuration>
+	    <property>
+	        <name>mapreduce.framework.name</name>
+	        <value>yarn</value>
+	    </property>
+	</configuration>
+vi /opt/hadoop-2.6.4/etc/hadoop/hdfs-site.xml
+	<configuration>
+	    <property>
+	        <name>dfs.replication</name>
+	        <value>1</value>
+	    </property>
+	    <property>
+	        <name>dfs.namenode.name.dir</name>
+	        <value>file:///tmp/hdfs/namenode</value>
+	    </property>
+	    <property>
+	        <name>dfs.datanode.data.dir</name>
+	        <value>file:///tmp/hdfs/datanode</value>
+	    </property>
+	</configuration>
+mkdir -p /tmp/hdfs/namenode
+mkdir -p /tmp/hdfs/datanode
+hadoop namenode -format
+start-dfs.sh
+start-yarn.sh
+
+# ResourceManager site
+http://localhost:8088
+
+# hdfs site
+http://localhost:50070
+
+
+
+
