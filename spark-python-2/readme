@@ -1,17 +1,18 @@
-# create anaconda virtual machine
-https://www.anaconda.com/download/
-sh /home/hsiehpinghan/Downloads/Anaconda3-5.1.0-Linux-x86_64.sh -b
-/home/hsiehpinghan/anaconda3/bin/conda create --name spark-python-2 python=3.6 anaconda
-/home/hsiehpinghan/anaconda3/bin/jupyter notebook --generate-config
-vi /home/hsiehpinghan/.jupyter/jupyter_notebook_config.py
-	c.NotebookApp.notebook_dir = '/home/hsiehpinghan/git/python/spark-python-2/notebook/'
-cd /home/hsiehpinghan/anaconda3/bin
-source activate spark-python-2
+# create anaconda virtual machine (https://repo.continuum.io/archive/)
+sh /home/hsiehpinghan/Downloads/Anaconda2-5.1.0-Linux-x86_64.sh -b
+/home/hsiehpinghan/anaconda2/bin/conda create --name spark-python-2 python=2.7.5 ipykernel
 
-# start jupyter notebook
-cd /home/hsiehpinghan/anaconda3/bin
+## start jupyter notebook
+export ANACONDA_HOME=/home/hsiehpinghan/anaconda2
+export PATH=$ANACONDA_HOME/bin:$PATH
+export PYSPARK_DRIVER_PYTHON=$ANACONDA_HOME/bin/ipython
+export PYSPARK_PYTHON=$ANACONDA_HOME/envs/spark-python-2/bin/python
+cd /home/hsiehpinghan/git/python/spark-python-2/notebook
 source activate spark-python-2
-jupyter lab
+# local mode
+PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS="notebook" MASTER=local[*] pyspark
+# yarn mode
+PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS="notebook" HADOOP_CONF_DIR=/opt/hadoop-2.7.6/etc/hadoop MASTER=yarn pyspark
 
 # set login without password
 https://github.com/hsiehpinghan/example/blob/master/bash-shell-example/example/ssh
@@ -44,6 +45,10 @@ vi /opt/hadoop-2.7.6/etc/hadoop/yarn-site.xml
         <property>
             <name>yarn.nodemanager.aux-services</name>
             <value>mapreduce_shuffle</value>
+        </property>
+        <property>
+            <name>yarn.nodemanager.vmem-pmem-ratio</name>
+            <value>4</value>
         </property>
     </configuration>
 cp /opt/hadoop-2.7.6/etc/hadoop/mapred-site.xml.template /opt/hadoop-2.7.6/etc/hadoop/mapred-site.xml
@@ -93,6 +98,9 @@ vi /etc/profile
 # start hadoop (wait http://localhost:50070/dfshealth.html "Safemode is off.")
 start-dfs.sh
 start-yarn.sh
+hdfs dfs -mkdir -p /user/hsiehpinghan/spark-python-2
+hdfs dfs -copyFromLocal /opt/spark-2.3.0-bin-hadoop2.7/LICENSE /user/hsiehpinghan/spark-python-2
+hdfs dfs -chown -R hsiehpinghan:supergroup /user/hsiehpinghan
 
 # ResourceManager site
 http://localhost:8088
@@ -100,10 +108,7 @@ http://localhost:8088
 # hdfs site
 http://localhost:50070
 
-## test
-hdfs dfs -mkdir -p /user/hsiehpinghan/spark-python-2
-hdfs dfs -chown -R hsiehpinghan:supergroup /user/hsiehpinghan
-hdfs dfs -copyFromLocal /opt/spark-2.3.0-bin-hadoop2.7/LICENSE /user/hsiehpinghan/spark-python-2
+
 # local
 pyspark --master local[*]
 localFile = sc.textFile("file:///etc/passwd")
@@ -117,4 +122,7 @@ hdfsFile = sc.textFile("hdfs://localhost:9000/user/hsiehpinghan/spark-python-2/L
 hdfsFile.count()
 http://localhost:8088
 exit()
+
+
+
 
