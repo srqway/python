@@ -120,8 +120,8 @@ New launch configuration
 # Main tag
 Name: spark-submit local
 Location: /opt/spark-2.3.0-bin-hadoop2.7/bin/spark-submit
-Working Directory: ${workspace_loc:/spark-python-2}
-Arguments: --master local[*] --driver-memory 1g --executor-memory 1g --name WordCount ${workspace_loc:spark-python-2/src/basic/WordCount.py}
+Working Directory: ${project_loc}
+Arguments: --master local[*] --driver-memory 1g --executor-memory 1g ${resource_loc}
 # Environment tag
 PYSPARK_DRIVER_PYTHON=/home/hsiehpinghan/anaconda2/bin/ipython
 PYSPARK_PYTHON=/home/hsiehpinghan/anaconda2/envs/spark-python-2/bin/python
@@ -132,8 +132,8 @@ New launch configuration
 # Main tag
 Name: spark-submit yarn
 Location: /opt/spark-2.3.0-bin-hadoop2.7/bin/spark-submit
-Working Directory: ${workspace_loc:/spark-python-2}
-Arguments: --master yarn --deploy-mode client --driver-memory 1g --executor-cores 2 --name WordCount ${workspace_loc:spark-python-2/src/basic/WordCount.py}
+Working Directory: ${project_loc}
+Arguments: --master yarn --deploy-mode client --driver-memory 1g --executor-cores 2 ${resource_loc}
 # Environment tag
 HADOOP_CONF_DIR=/opt/hadoop-2.7.6/etc/hadoop
 PYSPARK_DRIVER_PYTHON=/home/hsiehpinghan/anaconda2/bin/ipython
