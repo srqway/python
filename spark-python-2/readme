@@ -108,10 +108,34 @@ http://localhost:8088
 # hdfs site
 http://localhost:50070
 
-# WordCount test (https://spark.apache.org/docs/2.3.0/configuration.html)
+## WordCount test (https://spark.apache.org/docs/2.3.0/configuration.html)
+# local
 spark-submit --master local[*] --driver-memory 1g --executor-memory 1g --name WordCount /home/hsiehpinghan/git/python/spark-python-2/src/basic/WordCount.py
+# yarn
+HADOOP_CONF_DIR=/opt/hadoop-2.7.6/etc/hadoop spark-submit --master yarn --deploy-mode client --driver-memory 1g --executor-cores 2 --name WordCount /home/hsiehpinghan/git/python/spark-python-2/src/basic/WordCount.py
 
+## run pyspark in eclipse (local mode)
+Run -> External Tools -> External Tools Configurations -> Program
+New launch configuration
+# Main tag
+Name: spark-submit local
+Location: /opt/spark-2.3.0-bin-hadoop2.7/bin/spark-submit
+Working Directory: ${workspace_loc:/spark-python-2}
+Arguments: --master local[*] --driver-memory 1g --executor-memory 1g --name WordCount ${workspace_loc:spark-python-2/src/basic/WordCount.py}
+# Environment tag
+PYSPARK_DRIVER_PYTHON=/home/hsiehpinghan/anaconda2/bin/ipython
+PYSPARK_PYTHON=/home/hsiehpinghan/anaconda2/envs/spark-python-2/bin/python
 
-
-
+## run pyspark in eclipse (yarn mode)
+Run -> External Tools -> External Tools Configurations -> Program
+New launch configuration
+# Main tag
+Name: spark-submit yarn
+Location: /opt/spark-2.3.0-bin-hadoop2.7/bin/spark-submit
+Working Directory: ${workspace_loc:/spark-python-2}
+Arguments: --master yarn --deploy-mode client --driver-memory 1g --executor-cores 2 --name WordCount ${workspace_loc:spark-python-2/src/basic/WordCount.py}
+# Environment tag
+HADOOP_CONF_DIR=/opt/hadoop-2.7.6/etc/hadoop
+PYSPARK_DRIVER_PYTHON=/home/hsiehpinghan/anaconda2/bin/ipython
+PYSPARK_PYTHON=/home/hsiehpinghan/anaconda2/envs/spark-python-2/bin/python
 
