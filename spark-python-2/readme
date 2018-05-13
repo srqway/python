@@ -108,20 +108,9 @@ http://localhost:8088
 # hdfs site
 http://localhost:50070
 
+# WordCount test (https://spark.apache.org/docs/2.3.0/configuration.html)
+spark-submit --master local[*] --driver-memory 1g --executor-memory 1g --name WordCount /home/hsiehpinghan/git/python/spark-python-2/src/basic/WordCount.py
 
-# local
-pyspark --master local[*]
-localFile = sc.textFile("file:///etc/passwd")
-localFile.count()
-hdfsFile = sc.textFile("hdfs://localhost:9000/user/hsiehpinghan/spark-python-2/LICENSE")
-hdfsFile.count()
-exit()
-# yarn
-HADOOP_CONF_DIR=/opt/hadoop-2.7.6/etc/hadoop pyspark --master yarn --deploy-mode client
-hdfsFile = sc.textFile("hdfs://localhost:9000/user/hsiehpinghan/spark-python-2/LICENSE")
-hdfsFile.count()
-http://localhost:8088
-exit()
 
 
 
