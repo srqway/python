@@ -139,3 +139,10 @@ HADOOP_CONF_DIR=/opt/hadoop-2.7.6/etc/hadoop
 PYSPARK_DRIVER_PYTHON=/home/hsiehpinghan/anaconda2/bin/ipython
 PYSPARK_PYTHON=/home/hsiehpinghan/anaconda2/envs/spark-python-2/bin/python
 
+# download stumbleupon (https://www.kaggle.com/c/stumbleupon/data)
+
+# download Bike-Sharing-Dataset
+wget https://archive.ics.uci.edu/ml/machine-learning-databases/00275/Bike-Sharing-Dataset.zip -P /tmp/
+unzip /tmp/Bike-Sharing-Dataset.zip -d /tmp/Bike-Sharing-Dataset/
+
+
