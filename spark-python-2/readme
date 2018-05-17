@@ -108,6 +108,9 @@ http://localhost:8088
 # hdfs site
 http://localhost:50070
 
+# spark web ui
+http://localhost:4040
+
 ## WordCount test (https://spark.apache.org/docs/2.3.0/configuration.html)
 # local
 spark-submit --master local[*] --driver-memory 1g --executor-memory 1g --name WordCount /home/hsiehpinghan/git/python/spark-python-2/src/basic/WordCount.py
