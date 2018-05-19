@@ -1,3 +1,20 @@
+# download scala
+wget https://www.scala-lang.org/files/archive/scala-2.11.12.tgz -P /tmp
+tar xvfz /tmp/scala-2.11.12.tgz -C /opt/
+vi /etc/profile
+	export SCALA_HOME=/opt/scala-2.11.12
+	export PATH=$SCALA_HOME/bin:$PATH
+
+# download spark
+wget http://apache.stu.edu.tw/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz -P /tmp
+tar xvfz /tmp/spark-2.3.0-bin-hadoop2.7.tgz -C /opt/
+cp /opt/spark-2.3.0-bin-hadoop2.7/conf/log4j.properties.template /opt/spark-2.3.0-bin-hadoop2.7/conf/log4j.properties
+vi /opt/spark-2.3.0-bin-hadoop2.7/conf/log4j.properties
+	log4j.rootCategory=WARN, console
+vi /etc/profile
+	export SPARK_HOME=/opt/spark-2.3.0-bin-hadoop2.7
+	export PATH=$SPARK_HOME/bin:$PATH
+
 # create anaconda virtual machine (https://repo.continuum.io/archive/)
 sh /home/hsiehpinghan/Downloads/Anaconda2-5.1.0-Linux-x86_64.sh -b
 /home/hsiehpinghan/anaconda2/bin/conda create --name spark-python-2 python=2.7.5 ipykernel
@@ -77,23 +94,6 @@ vi /opt/hadoop-2.7.6/etc/hadoop/hdfs-site.xml
 mkdir -p /home/hsiehpinghan/Desktop/hdfs/namenode
 mkdir -p /home/hsiehpinghan/Desktop/hdfs/datanode
 hdfs namenode -format
-
-# download scala
-wget https://www.scala-lang.org/files/archive/scala-2.11.12.tgz -P /tmp
-tar xvfz /tmp/scala-2.11.12.tgz -C /opt/
-vi /etc/profile
-	export SCALA_HOME=/opt/scala-2.11.12
-	export PATH=$SCALA_HOME/bin:$PATH
-
-# download spark
-wget http://apache.stu.edu.tw/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz -P /tmp
-tar xvfz /tmp/spark-2.3.0-bin-hadoop2.7.tgz -C /opt/
-cp /opt/spark-2.3.0-bin-hadoop2.7/conf/log4j.properties.template /opt/spark-2.3.0-bin-hadoop2.7/conf/log4j.properties
-vi /opt/spark-2.3.0-bin-hadoop2.7/conf/log4j.properties
-	log4j.rootCategory=WARN, console
-vi /etc/profile
-	export SPARK_HOME=/opt/spark-2.3.0-bin-hadoop2.7
-	export PATH=$SPARK_HOME/bin:$PATH
 
 # start hadoop (wait http://localhost:50070/dfshealth.html "Safemode is off.")
 start-dfs.sh

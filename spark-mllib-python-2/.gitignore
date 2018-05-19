@@ -1,0 +1,5 @@
+*.pyc
+/bin/
+*-checkpoint.ipynb
+**/metastore_db/
+derby.log
