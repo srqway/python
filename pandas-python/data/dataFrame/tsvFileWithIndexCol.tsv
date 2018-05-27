@@ -1,0 +1,4 @@
+indexCol_0	indexCol_1	stringTypeField	booleanTypeField	dateTypeField	timestampTypeField	doubleTypeField	floatTypeField	integerTypeField	longTypeField	shortTypeField
+one_0	one_1	string_0	true	2001-01-01	2001-01-01 01:01:01	1.1	1.1	1	1	1
+one_0	two_1	string_2	false	2002-02-02	2002-02-02 02:02:02	2.2	2.2	2	2	2
+tow_0	three_1	string_0	true	2003-03-03	2003-03-03 03:03:03	3.3	3.3	3	3	3
