@@ -8,6 +8,7 @@ cd /home/hsiehpinghan/git/python/pandas-python/notebook/
 source activate pandas-python
 pip install pandas-datareader
 pip install fix_yahoo_finance 
+pip install lxml beautifulsoup4 html5lib
 
 # start jupyter notebook
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
