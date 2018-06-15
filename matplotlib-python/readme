@@ -4,15 +4,12 @@ sh /home/hsiehpinghan/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh -b
 /home/hsiehpinghan/anaconda3/bin/conda create --name python3.6 python=3.6 anaconda
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
 export PATH=$ANACONDA_HOME/bin:$PATH
-cd /home/hsiehpinghan/git/python/pandas-python/notebook/
+cd /home/hsiehpinghan/git/python/matplotlib-python/notebook/
 source activate python3.6
-pip install pandas-datareader
-pip install fix_yahoo_finance 
-pip install lxml beautifulsoup4 html5lib
 
 # start jupyter notebook
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
 export PATH=$ANACONDA_HOME/bin:$PATH
-cd /home/hsiehpinghan/git/python/pandas-python/notebook/
+cd /home/hsiehpinghan/git/python/matplotlib-python/notebook/
 source activate python3.6
 jupyter lab
