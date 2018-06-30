@@ -1,0 +1,14 @@
+# create anaconda virtual machine
+https://www.anaconda.com/download/
+sh /home/hsiehpinghan/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh -b
+/home/hsiehpinghan/anaconda3/bin/conda create --name python3.6 python=3.6 anaconda
+export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
+export PATH=$ANACONDA_HOME/bin:$PATH
+cd /home/hsiehpinghan/git/python/flask-python/src
+source activate python3.6
+
+# test
+curl -v -X POST -H "Content-Type: application/json" -d '{"name":"hsiehpinghan","age": 33}' http://127.0.0.1:5000/create
+curl -v -X GET http://127.0.0.1:5000/retrieve
+curl -v -X PUT -H "Content-Type: application/json" -d '{"name":"hsiehpinghan","age": 35}' http://127.0.0.1:5000/update
+curl -v -X DELETE http://127.0.0.1:5000/delete
