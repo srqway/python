@@ -7,7 +7,7 @@ sh /home/hsiehpinghan/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh -b
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
 export PATH=$ANACONDA_HOME/bin:$PATH
 source activate python3.6
-export FLASK_APP=/home/hsiehpinghan/git/python/flask-python/src/restful_app
+export FLASK_APP=/home/hsiehpinghan/git/python/flask-python/src/flaskpython/view
 export FLASK_ENV=development
 pip install -e .
 flask run

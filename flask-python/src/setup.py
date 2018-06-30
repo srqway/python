@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(
-    name='restful_app',
-    packages=['restful_app'],
+    name='flask-python',
+    packages=['flaskpython.view'],
     include_package_data=True,
     install_requires=[
         'flask',
