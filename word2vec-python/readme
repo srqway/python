@@ -1,0 +1,20 @@
+# create anaconda virtual machine
+https://www.anaconda.com/download/
+sh /home/hsiehpinghan/Downloads/Anaconda3-5.1.0-Linux-x86_64.sh -b
+/home/hsiehpinghan/anaconda3/bin/conda create --name word2vec-python python=3.6 anaconda
+/home/hsiehpinghan/anaconda3/bin/jupyter notebook --generate-config
+vi /home/hsiehpinghan/.jupyter/jupyter_notebook_config.py
+	c.NotebookApp.notebook_dir = '/home/hsiehpinghan/git/python/word2vec-python/notebook/'
+cd /home/hsiehpinghan/anaconda3/bin
+source activate word2vec-python
+python -m pip install jieba
+
+# train word2vec
+cd /home/hsiehpinghan/git/python/word2vec-python/word2vec/trunk
+make
+yum install gcc
+
+# start jupyter notebook
+cd /home/hsiehpinghan/anaconda3/bin
+source activate word2vec-python
+jupyter lab
