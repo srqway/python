@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, Response
 
-bp = Blueprint('auth', __name__, url_prefix='/rest')
+bp = Blueprint('rest', __name__, url_prefix='/rest')
 
 datas = []
 

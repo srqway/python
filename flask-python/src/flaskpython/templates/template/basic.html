@@ -1,0 +1,19 @@
+<html>
+<body>
+	<h3>expression</h3>
+	str_ : {{model.str_}} <br>
+	int_ : {{model.int_}} <br>
+
+	<h3>if else</h3>
+	{% if model.int_ > 0 %}
+		_int is positive <br>
+	{% else %}
+		_int is not positive <br>
+	{% endif %}
+
+	<h3>for loop</h3>
+	{% for key, value in model.items() %}
+		{{ key }} : {{ value }} <br>
+	{% endfor %}
+</body>
+</html>

@@ -7,7 +7,7 @@ sh /home/hsiehpinghan/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh -b
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
 export PATH=$ANACONDA_HOME/bin:$PATH
 source activate python3.6
-export FLASK_APP=/home/hsiehpinghan/git/python/flask-python/src/flaskpython/view
+export FLASK_APP=/home/hsiehpinghan/git/python/flask-python/src/flaskpython
 export FLASK_ENV=development
 cd /home/hsiehpinghan/git/python/flask-python/src/
 pip install -e .
@@ -20,14 +20,19 @@ curl -v -X PUT -H "Content-Type: application/json" -d '{"name":"hsiehpinghan","a
 curl -v -X DELETE http://127.0.0.1:5000/rest/delete
 
 # test path_param
-curl -v -X GET http://127.0.0.1:5000/path_param/str_/STRING
-curl -v -X GET http://127.0.0.1:5000/path_param/int_/3
-curl -v -X GET http://127.0.0.1:5000/path_param/float_/3.3
-curl -v -X GET http://127.0.0.1:5000/path_param/path/this/is/a/path
+http://127.0.0.1:5000/path_param/str_/STRING
+http://127.0.0.1:5000/path_param/int_/3
+http://127.0.0.1:5000/path_param/float_/3.3
+http://127.0.0.1:5000/path_param/path/this/is/a/path
 
 # test redirect
-curl -v -X GET http://127.0.0.1:5000/redirect/login/admin
-curl -v -X GET http://127.0.0.1:5000/redirect/login/hsiehpinghan
+http://127.0.0.1:5000/redirect/login/admin
+http://127.0.0.1:5000/redirect/login/hsiehpinghan
 
+# test template
+http://127.0.0.1:5000/template/basic
+
+# test form
+http://127.0.0.1:5000/form/index
 
 
