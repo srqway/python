@@ -9,12 +9,21 @@ export PATH=$ANACONDA_HOME/bin:$PATH
 source activate python3.6
 export FLASK_APP=/home/hsiehpinghan/git/python/flask-python/src/flaskpython/view
 export FLASK_ENV=development
+cd /home/hsiehpinghan/git/python/flask-python/src/
 pip install -e .
 flask run
 
-# test
-curl -v -X POST -H "Content-Type: application/json" -d '{"name":"hsiehpinghan","age": 33}' http://127.0.0.1:5000/create
-curl -v -X GET http://127.0.0.1:5000/retrieve
-curl -v -X PUT -H "Content-Type: application/json" -d '{"name":"hsiehpinghan","age": 35}' http://127.0.0.1:5000/update
-curl -v -X DELETE http://127.0.0.1:5000/delete
+# test rest
+curl -v -X POST -H "Content-Type: application/json" -d '{"name":"hsiehpinghan","age": 33}' http://127.0.0.1:5000/rest/create
+curl -v -X GET http://127.0.0.1:5000/rest/retrieve
+curl -v -X PUT -H "Content-Type: application/json" -d '{"name":"hsiehpinghan","age": 35}' http://127.0.0.1:5000/rest/update
+curl -v -X DELETE http://127.0.0.1:5000/rest/delete
+
+# test path_param
+curl -v -X GET http://127.0.0.1:5000/path_param/str_/STRING
+curl -v -X GET http://127.0.0.1:5000/path_param/int_/3
+curl -v -X GET http://127.0.0.1:5000/path_param/float_/3.3
+curl -v -X GET http://127.0.0.1:5000/path_param/path/this/is/a/path
+
+
 
