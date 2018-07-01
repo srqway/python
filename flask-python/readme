@@ -25,5 +25,9 @@ curl -v -X GET http://127.0.0.1:5000/path_param/int_/3
 curl -v -X GET http://127.0.0.1:5000/path_param/float_/3.3
 curl -v -X GET http://127.0.0.1:5000/path_param/path/this/is/a/path
 
+# test redirect
+curl -v -X GET http://127.0.0.1:5000/redirect/login/admin
+curl -v -X GET http://127.0.0.1:5000/redirect/login/hsiehpinghan
+
 
 
