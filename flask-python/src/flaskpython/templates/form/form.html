@@ -1,10 +1,17 @@
 <html>
 <body>
 	<h3>post</h3>
+	{% with criteria = get_flashed_messages(with_categories=True, category_filter=["criteria"]) %}
 	<form action="http://localhost:5000/form/post" method="POST">
-		str_ : <input type="text" name="str_" value="STRING" /> <br>
-		int_ : <input type="text" name="int_" value="3" /> <br>
+		str_ : <input type="text" name="str_" value="{% if criteria %}{{criteria[0][1]['str_']}}{% endif %}" /> <br>
+		int_ : <input type="text" name="int_" value="{% if criteria %}{{criteria[0][1]['int_']}}{% endif %}" /> <br>
 		<input type="submit">
 	</form>
+	{% endwith %}
+	{% with criteria = get_flashed_messages(with_categories=True, category_filter=["criteria"]) %}
+		{% if criteria %}
+			{{ criteria }} <br>
+		{% endif %}
+	{% endwith %}
 </body>
 </html>

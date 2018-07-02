@@ -9,13 +9,7 @@ from flaskpython import (
 )
 
 app = Flask(__name__)
-
-
-
-app.config['SESSION_TYPE'] = 'memcached'
-app.config['SECRET_KEY'] = 'super secret key'
-
-
+app.config['SECRET_KEY'] = 'my_secret_key'
 app.register_blueprint(rest.bp)
 app.register_blueprint(path_param.bp)
 app.register_blueprint(redirect.bp)
