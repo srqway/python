@@ -14,5 +14,3 @@ cd /home/hsiehpinghan/git/python/statsmodels-python/notebook/
 source activate python3.6
 jupyter lab
 
-
-https://www.analyticsvidhya.com/blog/2016/02/time-series-forecasting-codes-python/
