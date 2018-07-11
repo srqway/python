@@ -1,0 +1,18 @@
+# create anaconda virtual machine
+https://www.anaconda.com/download/
+sh /home/hsiehpinghan/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh -b
+/home/hsiehpinghan/anaconda3/bin/conda create --name python3.6 python=3.6 anaconda
+export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
+export PATH=$ANACONDA_HOME/bin:$PATH
+cd /home/hsiehpinghan/git/python/statsmodels-python/notebook/
+source activate python3.6
+
+# start jupyter notebook
+export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
+export PATH=$ANACONDA_HOME/bin:$PATH
+cd /home/hsiehpinghan/git/python/statsmodels-python/notebook/
+source activate python3.6
+jupyter lab
+
+
+https://www.analyticsvidhya.com/blog/2016/02/time-series-forecasting-codes-python/
