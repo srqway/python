@@ -17,22 +17,15 @@ vi /etc/profile
 
 # create anaconda virtual machine (https://repo.continuum.io/archive/)
 sh /home/hsiehpinghan/Downloads/Anaconda2-5.1.0-Linux-x86_64.sh -b
-/home/hsiehpinghan/anaconda2/bin/conda create --name spark-python-2 python=2.7.5 ipykernel
-export ANACONDA_HOME=/home/hsiehpinghan/anaconda2
-export PATH=$ANACONDA_HOME/bin:$PATH
-export PYSPARK_DRIVER_PYTHON=$ANACONDA_HOME/bin/ipython
-export PYSPARK_PYTHON=$ANACONDA_HOME/envs/spark-python-2/bin/python
-cd /home/hsiehpinghan/git/python/spark-python-2/notebook
-source activate spark-python-2
-pip install numpy
+/home/hsiehpinghan/anaconda2/bin/conda create --name python2.7 python=2.7 anaconda
 
 ## start jupyter notebook
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda2
 export PATH=$ANACONDA_HOME/bin:$PATH
 export PYSPARK_DRIVER_PYTHON=$ANACONDA_HOME/bin/ipython
-export PYSPARK_PYTHON=$ANACONDA_HOME/envs/spark-python-2/bin/python
+export PYSPARK_PYTHON=$ANACONDA_HOME/envs/python2.7/bin/python
 cd /home/hsiehpinghan/git/python/spark-python-2/notebook
-source activate spark-python-2
+source activate python2.7
 # local mode
 PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS="notebook" MASTER=local[*] pyspark
 # yarn mode
@@ -105,8 +98,8 @@ hdfs namenode -format
 # start hadoop (wait http://localhost:50070/dfshealth.html "Safemode is off.")
 start-dfs.sh
 start-yarn.sh
-hdfs dfs -mkdir -p /user/hsiehpinghan/spark-python-2
-hdfs dfs -copyFromLocal /opt/spark-2.3.0-bin-hadoop2.7/LICENSE /user/hsiehpinghan/spark-python-2
+hdfs dfs -mkdir -p /user/hsiehpinghan/python2.7
+hdfs dfs -copyFromLocal /opt/spark-2.3.0-bin-hadoop2.7/LICENSE /user/hsiehpinghan/python2.7
 hdfs dfs -chown -R hsiehpinghan:supergroup /user/hsiehpinghan
 
 # ResourceManager site
@@ -120,9 +113,9 @@ http://localhost:4040
 
 ## WordCount test (https://spark.apache.org/docs/2.3.0/configuration.html)
 # local
-spark-submit --master local[*] --driver-memory 1g --executor-memory 1g --name WordCount /home/hsiehpinghan/git/python/spark-python-2/src/basic/WordCount.py
+spark-submit --master local[*] --driver-memory 1g --executor-memory 1g --name WordCount /home/hsiehpinghan/git/python/python2.7/src/basic/WordCount.py
 # yarn
-HADOOP_CONF_DIR=/opt/hadoop-2.7.6/etc/hadoop spark-submit --master yarn --deploy-mode client --driver-memory 1g --executor-cores 2 --name WordCount /home/hsiehpinghan/git/python/spark-python-2/src/basic/WordCount.py
+HADOOP_CONF_DIR=/opt/hadoop-2.7.6/etc/hadoop spark-submit --master yarn --deploy-mode client --driver-memory 1g --executor-cores 2 --name WordCount /home/hsiehpinghan/git/python/python2.7/src/basic/WordCount.py
 
 ## run pyspark in eclipse (local mode)
 Run -> External Tools -> External Tools Configurations -> Program
@@ -134,7 +127,7 @@ Working Directory: ${project_loc}
 Arguments: --master local[*] --driver-memory 1g --executor-memory 1g ${resource_loc}
 # Environment tag
 PYSPARK_DRIVER_PYTHON=/home/hsiehpinghan/anaconda2/bin/ipython
-PYSPARK_PYTHON=/home/hsiehpinghan/anaconda2/envs/spark-python-2/bin/python
+PYSPARK_PYTHON=/home/hsiehpinghan/anaconda2/envs/python2.7/bin/python
 
 ## run pyspark in eclipse (yarn mode)
 Run -> External Tools -> External Tools Configurations -> Program
@@ -147,7 +140,7 @@ Arguments: --master yarn --deploy-mode client --driver-memory 1g --executor-core
 # Environment tag
 HADOOP_CONF_DIR=/opt/hadoop-2.7.6/etc/hadoop
 PYSPARK_DRIVER_PYTHON=/home/hsiehpinghan/anaconda2/bin/ipython
-PYSPARK_PYTHON=/home/hsiehpinghan/anaconda2/envs/spark-python-2/bin/python
+PYSPARK_PYTHON=/home/hsiehpinghan/anaconda2/envs/python2.7/bin/python
 
 # download stumbleupon (https://www.kaggle.com/c/stumbleupon/data)
 
