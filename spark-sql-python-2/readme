@@ -17,15 +17,15 @@ vi /etc/profile
 
 # create anaconda virtual machine (https://repo.continuum.io/archive/)
 sh /home/hsiehpinghan/Downloads/Anaconda2-5.1.0-Linux-x86_64.sh -b
-/home/hsiehpinghan/anaconda2/bin/conda create --name spark-sql-python-2 python=2.7.5 ipykernel
+/home/hsiehpinghan/anaconda2/bin/conda create --name python2.7 python=2.7 anaconda
 
 ## start jupyter notebook
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda2
 export PATH=$ANACONDA_HOME/bin:$PATH
 export PYSPARK_DRIVER_PYTHON=$ANACONDA_HOME/bin/ipython
-export PYSPARK_PYTHON=$ANACONDA_HOME/envs/spark-sql-python-2/bin/python
+export PYSPARK_PYTHON=$ANACONDA_HOME/envs/python2.7/bin/python
 cd /home/hsiehpinghan/git/python/spark-sql-python-2/notebook
-source activate spark-sql-python-2
+source activate python2.7
 PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS="notebook" MASTER=local[*] pyspark
 
 
