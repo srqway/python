@@ -2,10 +2,6 @@
 https://www.anaconda.com/download/
 sh /home/hsiehpinghan/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh -b
 /home/hsiehpinghan/anaconda3/bin/conda create --name python3.6 python=3.6 anaconda
-export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
-export PATH=$ANACONDA_HOME/bin:$PATH
-cd /home/hsiehpinghan/git/python/matplotlib-python/notebook/
-source activate python3.6
 
 # start jupyter notebook
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
@@ -13,3 +9,12 @@ export PATH=$ANACONDA_HOME/bin:$PATH
 cd /home/hsiehpinghan/git/python/matplotlib-python/notebook/
 source activate python3.6
 jupyter lab
+
+## add chinese font
+# list chinese font and convert ttc to ttf
+fc-list :lang=zh-cn
+cp /home/hsiehpinghan/git/python/matplotlib-python/font/* /home/hsiehpinghan/anaconda3/envs/python3.6/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf/
+# add in jupyter
+from pylab import mpl
+mpl.rcParams['font.sans-serif'] = ['WenQuanYi Zen Hei']
+mpl.rcParams['axes.unicode_minus'] = False
