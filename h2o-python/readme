@@ -15,3 +15,7 @@ export PATH=$ANACONDA_HOME/bin:$PATH
 cd /home/hsiehpinghan/git/python/h2o-python/notebook/
 source activate python3.6
 jupyter lab
+
+# run h2o
+java -jar /opt/h2o-3.20.0.7/h2o.jar
+
