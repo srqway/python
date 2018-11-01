@@ -1,0 +1,42 @@
+# create anaconda virtual machine
+https://www.anaconda.com/download/
+sh /home/hsiehpinghan/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh -b
+/home/hsiehpinghan/anaconda3/bin/conda create --name python3.6 python=3.6 anaconda
+export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
+export PATH=$ANACONDA_HOME/bin:$PATH
+cd /home/hsiehpinghan/git/python/pdb-python/notebook
+source activate python3.6
+
+# start jupyter notebook
+export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
+export PATH=$ANACONDA_HOME/bin:$PATH
+cd /home/hsiehpinghan/git/python/pdb-python/notebook
+source activate python3.6
+jupyter lab
+
+# console
+python
+<<python>> import pdb
+<<python>> pdb.run('print("pdb_test")')
+
+# script
+python3 -m pdb pdb_test.py
+
+# command (reference : https://docs.python.org/3/library/pdb.html)
+pdb.run(statement, globals=None, locals=None)
+pdb.set_trace(*, header=None)
+pdb.post_mortem(traceback=None)
+pdb.pm()
+h(elp) [command] 
+b(reak) [([filename:]lineno | function) [, condition]]
+r(eturn)
+c(ont(inue))
+n(ext)
+s(tep)
+p expression
+l(ist) [first[, last]]
+q(uit)
+
+
+
+
