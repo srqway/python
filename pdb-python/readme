@@ -20,7 +20,7 @@ python
 <<python>> pdb.run('print("pdb_test")')
 
 # script
-python3 -m pdb pdb_test.py
+python -m pdb pdb_test.py
 
 # command (reference : https://docs.python.org/3/library/pdb.html)
 pdb.run(statement, globals=None, locals=None)
