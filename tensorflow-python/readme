@@ -3,7 +3,6 @@ sh /home/hsiehpinghan/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh -b
 /home/hsiehpinghan/anaconda3/bin/conda create --name python3.6 python=3.6 anaconda
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
 export PATH=$ANACONDA_HOME/bin:$PATH
-cd /home/hsiehpinghan/git/python/tensorflow-python/notebook
 source activate python3.6
 pip install tensorflow
 
@@ -11,10 +10,16 @@ pip install tensorflow
 export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
 export PATH=$ANACONDA_HOME/bin:$PATH
 cd /home/hsiehpinghan/git/python/tensorflow-python/notebook
-source activate keras-python
+source activate python3.6
 jupyter lab
 
 # stop firewall
 firewall-cmd --zone=public --add-port=6006/tcp
 service firewalld restart
+
+# docker install
+<<cpu>> docker run -it -p 8888:8888 tensorflow/tensorflow
+<<gpu>> nvidia-docker run -it -p 8888:8888 tensorflow/tensorflow:latest-gpu
+
+
 
