@@ -1,0 +1,16 @@
+# create anaconda virtual machine (https://repo.continuum.io/archive/)
+sh /home/hsiehpinghan/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh -b
+/home/hsiehpinghan/anaconda3/bin/conda create --name python3.6 python=3.6 anaconda
+export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
+export PATH=$ANACONDA_HOME/bin:$PATH
+cd /home/hsiehpinghan/git/python/numpy-python/notebook
+source activate python3.6
+
+# start jupyter notebook
+export ANACONDA_HOME=/home/hsiehpinghan/anaconda3
+export PATH=$ANACONDA_HOME/bin:$PATH
+cd /home/hsiehpinghan/git/python/numpy-python/notebook
+source activate python3.6
+jupyter lab
+
+
